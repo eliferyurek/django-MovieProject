@@ -1,0 +1,25 @@
+{%  extends 'movie/main.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/log_reg.css' %}">
+
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-body">
+            <p>Do you want to delete "{{delete_customer}}"</p>
+
+            <form action="{% url 'deletecustomer' delete_customer.id %}" method="POST">
+                {% csrf_token %}
+
+                <a class="btn btn-outline-dark" href="{% url 'home' %}">&#x2190; Cancel</a>
+
+                <input class="btn btn-outline-danger" type="submit" name="Delete" value="Submit">
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,190 @@
+{%  extends 'movie/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<br>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/log_reg.css' %}">
+
+<html>
+	<div class="row">
+		<div class="col-md-7">
+			<h5>CUSTOMERS</h5>
+			<hr>
+			<div class="card card-body">
+				<a class="btn btn-outline-secondary" href="{% url 'createcustomer' %}"><b>Create Customer</b></a>
+				<table class="table table-sm">
+					<tr>
+						<th></th>
+						<th>Username</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email</th>
+						<th>Phone</th>
+					</tr>
+
+					{% for customer in customers %}
+						<tr>
+							<td><a class="btn btn-outline-info" href="{% url 'customer' customer.id %}"><b>Views</b></a></td>
+							<td>{{customer.username}}</td>
+							<td>{{customer.first_name}}</td>
+							<td>{{customer.last_name}}</td>
+							<td>{{customer.email}}</td>
+							<td>{{customer.mobile}}</td>
+
+						</tr>
+					{% endfor %}
+
+				</table>
+			</div>
+		</div>
+
+		<div class="col-md-5">
+			<h5>MOVIES</h5>
+			<hr>
+			<div class="card card-body">
+				<a class="btn btn-outline-secondary" href="{% url 'createmovie' %}"><b>Create Movie</b></a>
+				<table class="table table-sm">
+					<tr>
+						<th>Movie</th>
+						<th>Update</th>
+						<th>Delete</th>
+					</tr>
+
+					{% for movie in movies %}
+						<tr>
+							<td>{{movie.name}}</td>
+							<td><a class="btn btn-outline-info" href="{% url 'updatemovie' movie.id %}"><b>Update</b></a></td>
+
+							<td><a class="btn btn-outline-danger" href="{% url 'deletemovie' movie.id %}"><b>Delete</b></a></td>
+
+						</tr>
+					{% endfor %}
+
+
+
+				</table>
+			</div>
+		</div>
+
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-md-7">
+			<h5>STORES</h5>
+			<hr>
+			<div class="card card-body">
+				<a class="btn btn-outline-secondary" href="{% url 'addstore' %}"><b>Add Store</b></a>
+				<table class="table table-sm">
+					<tr>
+						<th>Store Address</th>
+						<th>Store City</th>
+						<th>Update</th>
+						<th>Delete</th>
+					</tr>
+
+					{% for store in stores %}
+						<tr>
+							<td>{{store.address}}</td>
+							<td>{{store.city.city}}</td>
+							<td><a class="btn btn-outline-info" href="{% url 'updatestore' store.id %}"><b>Update</b></a></td>
+
+							<td><a class="btn btn-outline-danger" href="{% url 'deletestore' store.id %}"><b>Delete</b></a></td>
+						</tr>
+					{% endfor %}
+
+				</table>
+			</div>
+		</div>
+
+		<div class="col-md-5">
+			<h5>ORDERS</h5>
+			<hr>
+			<div class="card card-body">
+				<table class="table table-sm">
+					<tr>
+						<th>Customer</th>
+						<th>Movie</th>
+						<th>Quantity</th>
+					</tr>
+
+					{% for order in orders %}
+						<tr>
+							<td>{{order.order.customer.username}}</td>
+							<td>{{order.movie.name}}</td>
+							<td>{{order.quantity}}</td>
+						</tr>
+					{% endfor %}
+
+
+
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+
+	<hr>
+	<div class="row">
+
+		<div class="col-md-7">
+			<h5>ACTORS</h5>
+			<hr>
+			<div class="card card-body">
+				<a class="btn btn-outline-secondary" href="{% url 'addactor' %}"><b>Add Actor</b></a>
+				<table class="table table-sm">
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+					</tr>
+
+					{% for actor in actors %}
+						<tr>
+							<td>{{actor.first_name}}</td>
+							<td>{{actor.last_name}}</td>
+							<td><a class="btn btn-outline-info" href="{% url 'updateactor' actor.id %}"><b>Update</b></a></td>
+
+							<td><a class="btn btn-outline-danger" href="{% url 'deleteactor' actor.id %}"><b>Delete</b></a></td>
+						</tr>
+					{% endfor %}
+
+
+
+				</table>
+			</div>
+		</div>
+
+		<div class="col-md-5">
+			<h5>DIRECTORS</h5>
+			<hr>
+			<div class="card card-body">
+				<a class="btn btn-outline-secondary" href="{% url 'adddirector' %}"><b>Add Director</b></a>
+				<table class="table table-sm">
+					<tr>
+						<th>Director</th>
+					</tr>
+
+					{% for director in directors %}
+						<tr>
+							<td>{{director.director}}</td>
+							<td><a class="btn btn-outline-info" href="{% url 'updatedirector' director.id %}"><b>Update</b></a></td>
+
+							<td><a class="btn btn-outline-danger" href="{% url 'deletedirector' director.id %}"><b>Delete</b></a></td>
+						</tr>
+					{% endfor %}
+
+				</table>
+			</div>
+		</div>
+
+
+
+	</div>
+
+	{% endblock %}
+
+</html>
+
+

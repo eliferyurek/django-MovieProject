@@ -1,0 +1,53 @@
+{%  extends 'movie/main.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+</style>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/log_reg.css' %}">
+
+<br>
+<div class="row">
+	<div class="col-md-3">
+		<hr>
+		<div class="card card-body">
+			{% if request.user.is_staff %}
+			<a class="btn btn-warning" href="{% url 'home' %}"> &#8592; Back to Dashboard</a>
+			{% else %}
+			<a class="btn btn-warning" href="{% url 'movies' %}"> &#8592; Back to Movies</a>
+			{% endif %}
+			<hr>
+			<h3 style="text-align: center">Account Settings</h3>
+			<hr>
+			<img class="profile-pic" src="{{customer.profile_pic.url}}" >
+		
+		</div>
+		<hr>
+	</div>
+	<div class="col-md-9">
+		<h4><strong>Username: </strong>{{customer.username}}</h4>
+		<h4><strong>Email: </strong>{{customer.email}}</h4>
+		<h7><i class="btn btn-outline-dark">Username and password cannot be changed.</i></h7>
+		<div class="cart cart-body">
+			<hr>
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{form.as_p}}
+		
+				<input class="btn signup_btn" type="submit" name="Update Information" value="Submit">
+			</form>
+			<hr>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{%  extends 'movie/main.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/log_reg.css' %}">
+
+	<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Options</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'updatecustomer' customer.id %}">Update Customer</a>
+			<a class="btn btn-outline-danger  btn-sm btn-block" href="{% url 'deletecustomer' customer.id %}">Delete Customer</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Contact Information</h5>
+			<hr>
+			<p><strong>Email:</strong> {{customer.email}}</p>
+			<p><strong>Phone:</strong> {{customer.mobile}}</p>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+{% endblock %}

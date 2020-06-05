@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+{%  extends 'movie/main.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/log_reg.css' %}">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+	<div class="row">
+
+        <div class="col-lg-4">
+			<br><br>
+		<div class="card card-body">
+			<a class="btn btn-warning" href="{% url 'movies' %}"> &#8592; Back to Movie List</a>
+			<hr>
+			<img class="thumbnail" src="{{movie.image.url}}" >
+
+		</div>
+	    </div>
+
+
+		<div class="col-lg-5">
+			<br><br>
+			<div class="box-element movie">
+				<div class="input-group-append">
+					<span class="input-group-text"><i class="fas fa-envelope-square"><strong>Movie Name</strong> </i></span>
+					<h4> &nbsp {{movie.name}}</h4>
+				</div>
+				<hr>
+				<div class="input-group-append">
+					<span class="input-group-text"><i class="fas fa-envelope-square"><strong>Price</strong> </i></span>
+					<h4> &nbsp {{movie.price|floatformat:2}}</h4>
+				</div>
+                <hr>
+				<div class="input-group-append">
+					<span class="input-group-text"><i class="fas fa-envelope-square"><strong>Description</strong> </i></span>
+					<h4> &nbsp {{movie.description}}</h4>
+				</div>
+                <hr>
+				<div class="input-group-append">
+					<span class="input-group-text"><i class="fas fa-envelope-square"><strong>Category</strong> </i></span>
+					<h4> {% for i in movie.category.all %}&nbsp {{ i.category }}<br>
+                    {% endfor %}</h4>
+				</div>
+                <hr>
+				<div class="input-group-append">
+					<span class="input-group-text"><i class="fas fa-envelope-square"><strong>Director</strong> </i></span>
+					<h4> &nbsp {{movie.director.director}}</h4>
+				</div>
+                <hr>
+				<div class="input-group-append">
+					<span class="input-group-text"><i class="fas fa-envelope-square"><strong>Actor List</strong> </i></span>
+					<h4> {% for i in movie.actor.all %}&nbsp{{ i.first_name }} {{ i.last_name }}
+                    <br>
+                    {% endfor %}</h4>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+
+{% endblock content %}

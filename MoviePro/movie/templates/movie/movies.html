@@ -1,0 +1,31 @@
+{%  extends 'movie/main.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/log_reg.css' %}">
+
+<html>
+	{% for message in messages %}
+		<p id="messages">{{message}}</p>
+	{% endfor %}
+
+	<div class="row">
+		{% for movie in movies %}
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{{movie.image.url}}">
+			<div class="box-element movie">
+				<h6><strong>{{movie.name}}</strong></h6>
+				<hr>
+				<button data-product={{movie.id}}  data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				<a class="btn btn-outline-success" href="{% url 'movieview' movie.id %}">Details</a>
+				<h4 style="display: inline-block; float: right"><strong>{{movie.price|floatformat:2}}</strong></h4>
+
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+
+</html>
+
+{% endblock content %}

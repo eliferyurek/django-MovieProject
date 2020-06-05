@@ -1,0 +1,44 @@
+{% load static %}
+<style>
+  .hello-msg{
+    font-size: 18px;
+    color: #F6EEEC;
+    margin-right: 20px;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      {% if request.user.is_staff %}
+      <li class="nav-item">
+        <a class="btn btn-light" href="{% url 'home' %}"><b><h4>Dashboard</h4></b></a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="btn btn-light" href="{% url 'movies' %}"><b><h4>Movies</h4></b></a>
+      </li>
+      <li class="nav-item">
+        <a class="btn btn-light" href="{% url 'account' %}"><b><h4>Settings</h4></b></a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+
+  {% if request.user.is_staff %}
+  <span><a class="btn btn-light" href="{% url 'logout' %}"><b><h4>Logout</h4></b></a></span>
+  {% else %}
+  <span><a class="btn btn-light" href="{% url 'logout' %}"><b><h4>Logout</h4></b></a></span>
+
+  <a class="btn btn-light" href="{% url 'cart' %}">
+  <img  id="cart-icon" src="{% static 'images/cart.png' %}"><i>Cart</i>
+    {% endif %}
+  </a>
+
+
+
+
+</nav>

@@ -1,0 +1,32 @@
+{%  extends 'movie/main.html' %}
+{% load static %}
+{% block content %}
+
+<html>
+<link rel="stylesheet" type="text/css" href="{% static 'css/log_reg.css' %}">
+<div class="row">
+
+    <div class="col-lg-4">
+		<div class="card card-body">
+            <hr>
+			<a class="btn btn-warning" href="{% url 'home' %}"> &#8592; Back to Profile</a>
+        <hr>
+            <img class="thumbnail" src="{{movie.image.url}}">
+
+		</div>
+	</div>
+
+	<div class="col-md-8">
+		<div class="cart cart-body">
+            <br><hr>
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input class="btn signup_btn" type="submit" name="Save" value="Submit">
+            </form>
+		</div>
+	</div>
+</div>
+</html>
+
+{% endblock %}
